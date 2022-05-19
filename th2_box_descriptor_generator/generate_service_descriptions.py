@@ -32,7 +32,7 @@ def create_protos_dict(module_name):
 
 
 if __name__ == '__main__':
-    output_filepath = Path('service_proto_description.json')
+    output_filepath = Path('service_proto_description')
 
     grpc_modules_names = get_grpc_modules_names()
     modules_protos_dict = {grpc_module_name: create_protos_dict(grpc_module_name)
