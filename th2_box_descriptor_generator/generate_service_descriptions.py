@@ -26,7 +26,7 @@ def create_protos_dict(module_name):
     for proto_path in full_protos_paths:
         relative_proto_path = str(Path(module_name) / proto_path.name)
         with open(proto_path, 'r') as proto_file:
-            protos_dict[relative_proto_path] = proto_file.readlines()
+            protos_dict[relative_proto_path] = proto_file.read()
 
     return protos_dict
 
@@ -39,7 +39,7 @@ if __name__ == '__main__':
                            for grpc_module_name in grpc_modules_names}
 
     json_string = json.dumps(modules_protos_dict)
-    json_string_base64 = base64.encodebytes(json_string.encode('utf-8'))
+    json_string_base64 = base64.b64encode(json_string.encode('utf-8'))
 
     with open(output_filepath, 'wb') as output_file:
         output_file.write(json_string_base64)
